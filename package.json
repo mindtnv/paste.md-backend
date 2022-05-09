@@ -1,0 +1,21 @@
+{
+  "name": "learn-orm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "tsc --outDir ./dist -p ./tsconfig.json",
+    "dev": "cross-env APP_DB_LOCATION=db.db npx ts-node ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^7.0.0",
+    "@types/node": "^17.0.30",
+    "fastify": "^3.29.0",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.6",
+    "typeorm": "^0.3.6"
+  }
+}
