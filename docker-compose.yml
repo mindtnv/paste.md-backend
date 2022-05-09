@@ -5,8 +5,8 @@ networks:
     external: true
 
 services:
-  pastemd-api:
-    image: registry.dev.zldk.su/pastemd-api
+  pastemd-backend:
+    image: registry.dev.zldk.su/pastemd-backend
     networks:
       - traefik-public
 
@@ -18,13 +18,13 @@ services:
       labels:
         - traefik.enable=true
         - traefik.docker.network=traefik-public
-        - traefik.http.routers.pastemd-api.rule=Host(`api.pastemd.gbms.site`)
-        - traefik.http.routers.pastemd-api-http.entrypoints=http
-        - traefik.http.routers.pastemd-api-http.service=pastemd-api
-        - traefik.http.routers.pastemd-api-http.rule=Host(`gbms.site`)
-        - traefik.http.routers.pastemd-api-http.middlewares=https-redirect
-        - traefik.http.routers.pastemd-api.entrypoints=https
-        - traefik.http.routers.pastemd-api.tls=true
-        - traefik.http.routers.pastemd-api.tls.certresolver=le
-        - traefik.http.services.pastemd-api.loadbalancer.server.port=8000
-        - traefik.http.routers.pastemd-api.service=pastemd-api
+        - traefik.http.routers.pastemd-backend.rule=Host(`api.pastemd.gbms.site`)
+        - traefik.http.routers.pastemd-backend-http.entrypoints=http
+        - traefik.http.routers.pastemd-backend-http.service=pastemd-backend
+        - traefik.http.routers.pastemd-backend-http.rule=Host(`api.pastemd.gbms.site`)
+        - traefik.http.routers.pastemd-backend-http.middlewares=https-redirect
+        - traefik.http.routers.pastemd-backend.entrypoints=https
+        - traefik.http.routers.pastemd-backend.tls=true
+        - traefik.http.routers.pastemd-backend.tls.certresolver=le
+        - traefik.http.services.pastemd-backend.loadbalancer.server.port=8000
+        - traefik.http.routers.pastemd-backend.service=pastemd-backend
