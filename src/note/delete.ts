@@ -23,6 +23,7 @@ export const createNoteDeleteHandler = (
             await repository.remove(note);
             return reply.status(200).send();
         } catch (e) {
+            console.error(e);
             return reply.code(500).send();
         }
     };

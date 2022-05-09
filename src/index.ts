@@ -19,7 +19,8 @@ async function main() {
   app.put("/note/:id", createNotePutHandler(app, notesRepository));
   app.delete("/note/:id", createNoteDeleteHandler(app, notesRepository));
   app.post("/note", createNotePostHandler(app, notesRepository));
-  await app.listen(8000);
+  await app.listen(8000, "0.0.0.0");
+  console.log("Server started ad 0.0.0.0:8000");
 }
 
 main();
