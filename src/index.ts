@@ -11,7 +11,7 @@ async function main() {
   await AppDataSource.initialize();
   const notesRepository = AppDataSource.getRepository<NoteEntity>(NoteEntity);
   const app = fastify();
-
+  console.log("Starting app...");
   app.register(require("@fastify/cors"), {
     origin: "http://localhost:3000",
   });
