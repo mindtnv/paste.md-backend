@@ -11,7 +11,7 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 ARG NODE_ENV=devolpement
 RUN echo ${NODE_ENV}
-RUN NODE_ENV=${NODE_ENV} yarn build
+RUN NODE_ENV=${NODE_ENV} npm run build
 
 # Production image, copy all the files and run next
 FROM node:alpine AS runner
