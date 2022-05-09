@@ -24,5 +24,5 @@ COPY --from=builder /app/dist ./dist
 USER nodejs
 
 EXPOSE 8000
-
+ENV APP_DB_LOCATION=/data/db.db
 CMD ["node", "/app/dist/index.js"]
