@@ -5,15 +5,16 @@ networks:
     external: true
     
 volumes:
-  - pastemd-backend:
+  pastemd-backend:
 
 services:
   pastemd-backend:
     image: registry.dev.zldk.su/pastemd-backend
-    volumes:
-      - pastemd-backend:/data
     networks:
       - traefik-public
+
+    volumes:
+      - pastemd-backend:/data
 
     deploy:
       restart_policy:
