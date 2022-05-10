@@ -3,10 +3,15 @@
 networks:
   traefik-public:
     external: true
+    
+volumes:
+  - pastemd-backend:
 
 services:
   pastemd-backend:
     image: registry.dev.zldk.su/pastemd-backend
+    volumes:
+      - pastemd-backend:/data
     networks:
       - traefik-public
 
