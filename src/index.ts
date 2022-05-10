@@ -13,7 +13,7 @@ async function main() {
   const app = fastify();
   console.log("Starting app...");
   app.register(require("@fastify/cors"), {
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://pastemd.gbms.site"],
   });
   app.get("/note/:id", createNoteGetHandler(app, notesRepository));
   app.put("/note/:id", createNotePutHandler(app, notesRepository));
