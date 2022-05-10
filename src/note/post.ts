@@ -1,6 +1,7 @@
-﻿import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
-import { Repository } from "typeorm";
-import { NoteEntity } from "../NoteEntity";
+﻿import {FastifyInstance, FastifyReply, FastifyRequest} from "fastify";
+import {Repository} from "typeorm";
+import {NoteEntity} from "../NoteEntity";
+import {getBody} from "../utils";
 
 export interface NoteHandlerPostArgs {
   content: string;
@@ -8,8 +9,8 @@ export interface NoteHandlerPostArgs {
 }
 
 export const createNotePostHandler = (
-  app: FastifyInstance,
-  repository: Repository<NoteEntity>
+    app: FastifyInstance,
+    repository: Repository<NoteEntity>
 ) => {
   return async (
     request: FastifyRequest<{ Body: string }>,
@@ -19,7 +20,7 @@ export const createNotePostHandler = (
       const note = new NoteEntity();
       if (!request.body) return reply.code(400).send();
 
-      const body = JSON.parse(request.body) as NoteHandlerPostArgs;
+      const body = getBody<NoteHandlerPostArgs>(request.body);
       if (!body.title || !body.content) return reply.code(400).send();
 
       note.content = body.content;
@@ -27,8 +28,8 @@ export const createNotePostHandler = (
       note.createDate = new Date();
       note.updatedDate = new Date();
       note.editCode = Buffer.from(new Date().getTime().toString())
-        .toString("base64")
-        .substring(0, 18);
+          .toString("base64")
+          .substring(0, 18);
       await repository.save(note);
 
       reply.send({

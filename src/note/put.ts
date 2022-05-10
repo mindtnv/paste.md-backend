@@ -3,7 +3,7 @@ import { Repository } from "typeorm";
 import { NoteEntity } from "../NoteEntity";
 import { NoteHandlerPostArgs } from "./post";
 import { NoteHandlerGetArgs } from "./get";
-import {getNoteById} from "../utils";
+import {getBody, getNoteById} from "../utils";
 
 export const createNotePutHandler = (
   app: FastifyInstance,
@@ -25,7 +25,7 @@ export const createNotePutHandler = (
 
       if (!request.body) return reply.code(400).send();
 
-      const body = JSON.parse(request.body) as NoteHandlerPostArgs;
+      const body = getBody<NoteHandlerPostArgs>(request.body);
       if (!body.title && !body.content) return reply.code(200).send();
       if (body.title) note.title = body.title;
       if (body.content) note.content = body.content;
