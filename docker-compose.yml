@@ -9,7 +9,7 @@ volumes:
 
 services:
   pastemd-backend:
-    image: registry.dev.zldk.su/pastemd-backend
+    image: registry.dev.gbms.site/pastemd-backend
     networks:
       - traefik-public
 
