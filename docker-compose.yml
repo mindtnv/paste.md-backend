@@ -1,4 +1,4 @@
-﻿version: "3.7"
+version: "3.7"
 
 networks:
   traefik-public:
@@ -9,7 +9,7 @@ volumes:
 
 services:
   pastemd-backend:
-    image: registry.dev.gbms.site/pastemd-backend
+    image: registry.dev.gbms.site/pastemd-backend:latest
     networks:
       - traefik-public
 
